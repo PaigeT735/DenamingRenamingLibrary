@@ -5,12 +5,15 @@
 :root {
   --cream: #f5f1e6;        /* page */
   --stone: #e9e5da;        /* references band */
-  --mist: #e3e7ea;         /* team contract band */
+  --mist: #dfe6ed;         /* team contract band, a pale Trinity blue */
   --rule: #cfcabd;         /* hairlines on cream */
-  --concrete: #6f757b;     /* secondary text */
+  --rule-blue: #c2cedb;    /* hairlines on blue grounds */
+  --concrete: #67717c;     /* secondary text */
   --blue: #2b5c8a;         /* muted Trinity blue: links, active states */
-  --blue-deep: #1d4266;
+  --blue-deep: #1f4a73;    /* headings, figure labels */
+  --blue-pale: #d7e2ed;
   --ink: #17233a;          /* text */
+  --navy: #16294a;         /* footer, hero overlay */
   --white: #fbf9f3;
 
   --sans: "Schibsted Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -45,8 +48,16 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-a { color: var(--blue); text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
-a:hover { color: var(--blue-deep); }
+a {
+  color: var(--blue);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+  text-decoration-color: rgba(43, 92, 138, 0.4);
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+a:hover { color: var(--blue-deep); text-decoration-color: currentColor; }
+
+::selection { background: var(--blue-pale); color: var(--ink); }
 
 :focus-visible {
   outline: 2px solid var(--blue);
@@ -74,9 +85,11 @@ a:hover { color: var(--blue-deep); }
   inset: 0 0 auto 0;
   z-index: 20;
   height: var(--nav-h);
-  background: var(--cream);
+  background: rgba(245, 241, 230, 0.94);
   border-bottom: 1px solid var(--rule);
-  transition: background-color 0.25s ease, border-color 0.25s ease;
+  -webkit-backdrop-filter: saturate(1.3) blur(10px);
+  backdrop-filter: saturate(1.3) blur(10px);
+  transition: background-color 0.35s ease, border-color 0.35s ease;
 }
 
 .nav__list {
@@ -100,7 +113,7 @@ a:hover { color: var(--blue-deep); }
   align-items: center;
   height: 100%;
   border-bottom: 2px solid transparent;
-  color: var(--concrete);
+  color: #5d6c7c;
   font-family: var(--sans);
   font-size: 0.875rem;
   font-weight: 500;
@@ -109,7 +122,7 @@ a:hover { color: var(--blue-deep); }
   white-space: nowrap;
   transition: color 0.2s ease, border-color 0.2s ease;
 }
-.nav__list a:hover { color: var(--ink); }
+.nav__list a:hover { color: var(--blue-deep); }
 .nav__list a[aria-current="true"] {
   color: var(--ink);
   border-bottom-color: var(--blue);
@@ -125,20 +138,12 @@ a:hover { color: var(--blue-deep); }
 /* While the hero is on screen the bar sits clear over the photograph. */
 .js .nav.is-clear {
   background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
   border-bottom-color: rgba(251, 249, 243, 0.22);
 }
 .js .nav.is-clear .nav__list a { color: rgba(251, 249, 243, 0.78); }
 .js .nav.is-clear .nav__list a:hover { color: var(--white); }
-
-.progress {
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 2px;
-  background: var(--blue);
-  transform: scaleX(0);
-  transform-origin: 0 50%;
-}
-.js .nav.is-clear .progress { opacity: 0; }
 
 /* ---------- Hero ---------- */
 
@@ -148,7 +153,7 @@ a:hover { color: var(--blue-deep); }
   align-items: flex-end;
   min-height: 100vh;
   min-height: 100svh;
-  background: var(--ink);
+  background: var(--navy);
   color: var(--white);
   overflow: hidden;
 }
@@ -167,7 +172,7 @@ a:hover { color: var(--blue-deep); }
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to top, rgba(16, 26, 44, 0.92) 0%, rgba(16, 26, 44, 0.55) 42%, rgba(16, 26, 44, 0.28) 100%);
+    linear-gradient(to top, rgba(17, 36, 66, 0.93) 0%, rgba(20, 42, 76, 0.56) 42%, rgba(22, 46, 82, 0.3) 100%);
 }
 
 .hero__inner {
@@ -223,6 +228,8 @@ a:hover { color: var(--blue-deep); }
   line-height: 1.4;
   color: rgba(251, 249, 243, 0.62);
 }
+.hero__foot a,
+.foot a { text-decoration-color: rgba(251, 249, 243, 0.4); }
 .hero__foot a { color: inherit; }
 .hero__foot a:hover { color: var(--white); }
 .hero__credit { margin: 0; max-width: 34rem; }
@@ -284,15 +291,21 @@ a:hover { color: var(--blue-deep); }
   font-weight: 600;
   line-height: 1.14;
   letter-spacing: -0.018em;
+  color: var(--blue-deep);
   text-wrap: balance;
 }
 
 .prose > :first-child { margin-top: 0; }
 .prose > :last-child { margin-bottom: 0; }
 
+.prose {
+  font-variant-numeric: oldstyle-nums proportional-nums;
+}
+
 .prose p {
   margin: 0 0 1.35em;
   hanging-punctuation: first;
+  text-wrap: pretty;
 }
 
 .prose .lede {
@@ -303,6 +316,7 @@ a:hover { color: var(--blue-deep); }
 
 .prose h3 {
   margin: 2.6em 0 0.7em;
+  text-wrap: balance;
   font-family: var(--sans);
   font-size: 1.1875rem;
   font-weight: 600;
@@ -328,7 +342,7 @@ a:hover { color: var(--blue-deep); }
 .prose blockquote {
   margin: 2rem 0;
   padding: 0 0 0 1.5rem;
-  border-left: 1px solid var(--rule);
+  border-left: 1px solid var(--rule-blue);
   font-size: 1.0625rem;
   line-height: 1.65;
   color: #33405a;
@@ -344,7 +358,7 @@ a:hover { color: var(--blue-deep); }
 .keyline {
   margin: 2.4rem 0;
   padding: 1.25rem 0;
-  border-top: 1px solid var(--ink);
+  border-top: 1px solid var(--blue-deep);
   border-bottom: 1px solid var(--rule);
   font-family: var(--sans);
   font-size: 1.125rem;
@@ -355,11 +369,60 @@ a:hover { color: var(--blue-deep); }
 
 .cite { font-size: 0.92em; color: var(--concrete); white-space: nowrap; }
 
+/* ---------- Figures ---------- */
+
+.figure {
+  margin: 2.75rem 0 3rem;
+}
+.figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--stone);
+}
+.figure figcaption {
+  margin-top: 0.85rem;
+  max-width: 36rem;
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--concrete);
+  text-wrap: pretty;
+}
+.figure__num {
+  margin-right: 0.35em;
+  font-weight: 600;
+  color: var(--blue-deep);
+}
+
+/* Two images side by side, one caption. */
+.figure__pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+.figure__pair img { aspect-ratio: 2 / 3; object-fit: cover; }
+
+/* Diagram drawn in the page's own palette. */
+.levels { display: block; width: 100%; max-width: 25rem; height: auto; margin: 0 auto; }
+.levels__outer { fill: var(--blue-pale); }
+.levels__middle { fill: #eef2f5; stroke: var(--rule-blue); }
+.levels__inner { fill: var(--blue); }
+.levels__label {
+  font-family: var(--sans);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  text-anchor: middle;
+  fill: var(--blue-deep);
+}
+.levels__label--light { fill: var(--white); }
+
 /* ---------- References ---------- */
 
 .band { border-top: 1px solid var(--rule); }
 .band--stone { background: var(--stone); }
-.band--mist { background: var(--mist); border-top-color: #cdd3d8; }
+.band--mist { background: var(--mist); border-top-color: var(--rule-blue); }
 
 .band__inner {
   max-width: var(--page);
@@ -369,6 +432,7 @@ a:hover { color: var(--blue-deep); }
 
 .band__title {
   margin: 0 0 0.6rem;
+  color: var(--blue-deep);
   font-family: var(--sans);
   font-size: clamp(1.6rem, 2.4vw, 2rem);
   font-weight: 600;
@@ -413,13 +477,13 @@ a:hover { color: var(--blue-deep); }
 .contract__head .band__title { margin: 0; }
 .contract__intro { margin: 0; font-size: 1.0625rem; line-height: 1.65; }
 
-.terms { margin: 0; border-top: 1px solid var(--ink); }
+.terms { margin: 0; border-top: 1px solid var(--blue-deep); }
 .terms__row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
   gap: 0.5rem clamp(2rem, 6vw, 5rem);
   padding: 1.6rem 0;
-  border-bottom: 1px solid #c6cdd3;
+  border-bottom: 1px solid var(--rule-blue);
 }
 .terms dt {
   font-family: var(--sans);
@@ -446,7 +510,7 @@ a:hover { color: var(--blue-deep); }
 }
 .signed__list li {
   padding-top: 0.7rem;
-  border-top: 1px solid var(--ink);
+  border-top: 1px solid var(--blue-deep);
   font-family: var(--sans);
   font-size: 0.9375rem;
   font-weight: 500;
@@ -455,7 +519,7 @@ a:hover { color: var(--blue-deep); }
 /* ---------- Footer ---------- */
 
 .foot {
-  background: var(--ink);
+  background: var(--navy);
   color: rgba(251, 249, 243, 0.72);
   font-family: var(--sans);
   font-size: 0.875rem;
@@ -494,12 +558,14 @@ a:hover { color: var(--blue-deep); }
   .contract__head,
   .terms__row { grid-template-columns: minmax(0, 1fr); }
   .signed__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .figure { margin: 2.25rem 0 2.5rem; }
+  .figure__pair { gap: 0.5rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .scroll-cue__line::after { animation: none; transform: none; }
-  .nav, .nav__list a { transition: none; }
+  .nav, .nav__list a, a { transition: none; }
 }
 
 @media print {
@@ -507,4 +573,5 @@ a:hover { color: var(--blue-deep); }
   .hero { min-height: 0; color: var(--ink); background: none; }
   .hero__photo, .hero::after { display: none; }
   .chapter__title { position: static; }
+  .figure { break-inside: avoid; }
 }

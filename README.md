@@ -10,11 +10,15 @@ A static site with no build step: open `index.html` in a browser, or serve the f
 | --- | --- |
 | `index.html` | All content: hero, the six essay sections, references, team contract |
 | `styles.css` | Colours, type and layout (palette and fonts are variables at the top) |
-| `script.js` | Active-section underline in the navigation, reading progress bar |
+| `script.js` | Active-section underline in the navigation |
+| `assets/` | Essay figures (JPEG) |
+| `favicon.svg`, `favicon-32.png`, `apple-touch-icon.png` | Globe site icon |
 
 ## Adding the essay
 
 All text is currently Lorem Ipsum. In `index.html`, each section has a `<div class="prose">`; replace the paragraphs inside it. A comment above the first section lists the building blocks (opening paragraph, subheading, pull quote, highlighted statement, source quotation, in-text citation).
+
+Figures are `<figure class="figure">` blocks inside the essay sections, numbered Figure 1 to 6. To swap a picture, replace the file in `assets/` (keep the name, or update the `src`, `width` and `height`). Figure 3 is the Schein culture diagram, drawn in SVG so it matches the site's colours. If you add photos you did not take, credit them in the caption.
 
 References are the `<li>` items inside `<ol class="refs">`. Team contract clauses are the rows inside `<dl class="terms">`.
 

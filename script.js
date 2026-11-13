@@ -1,4 +1,4 @@
-// Navigation behaviour: active-section underline, reading progress,
+// Navigation behaviour: active-section underline
 // and the clear-over-photo state of the bar while the hero is on screen.
 (function () {
   "use strict";
@@ -7,7 +7,6 @@
 
   var nav = document.querySelector(".nav");
   var list = document.querySelector(".nav__list");
-  var bar = document.querySelector(".progress");
   var hero = document.querySelector(".hero");
   var links = Array.prototype.slice.call(list.querySelectorAll("a[href^='#']"));
   var sections = links
@@ -44,9 +43,6 @@
 
     // Bar is clear while the hero still fills the space behind it.
     nav.classList.toggle("is-clear", hero.getBoundingClientRect().bottom > navH);
-
-    // Reading progress across the whole page.
-    bar.style.transform = "scaleX(" + (max > 0 ? Math.min(1, y / max) : 0) + ")";
 
     // A section becomes current once its top passes the upper third of the window.
     var line = navH + vh * 0.3;
