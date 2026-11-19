@@ -308,9 +308,9 @@ a:hover { color: var(--blue-deep); text-decoration-color: currentColor; }
   text-wrap: pretty;
 }
 
+/* Opening paragraph of each section: body size, set in italic. */
 .prose .lede {
-  font-size: 1.4375rem;
-  line-height: 1.55;
+  font-style: italic;
   color: var(--ink);
 }
 
@@ -574,7 +574,6 @@ a:hover { color: var(--blue-deep); text-decoration-color: currentColor; }
 
 @media (max-width: 44rem) {
   body { font-size: 1.0625rem; line-height: 1.68; }
-  .prose .lede { font-size: 1.25rem; }
   .prose p { hyphens: auto; }
   .hero__photo { object-position: 30% 50%; }
   .hero__inner { padding-bottom: 7.5rem; }
