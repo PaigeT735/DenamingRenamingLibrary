@@ -367,7 +367,17 @@ a:hover { color: var(--blue-deep); text-decoration-color: currentColor; }
 }
 .prose .keyline { hyphens: manual; }
 
-.cite { font-size: 0.92em; color: var(--concrete); white-space: nowrap; }
+.cite { font-size: 0.92em; color: var(--concrete); }
+
+/* Sections still being written. */
+.prose .pending {
+  margin: 0;
+  padding: 1.1rem 0 1.1rem 1.25rem;
+  border-left: 2px solid var(--rule-blue);
+  font-family: var(--sans);
+  font-size: 1rem;
+  color: var(--concrete);
+}
 
 /* ---------- Figures ---------- */
 
@@ -440,17 +450,8 @@ a:hover { color: var(--blue-deep); text-decoration-color: currentColor; }
   letter-spacing: -0.018em;
 }
 
-.band__note {
-  margin: 0 0 2.5rem;
-  max-width: 38rem;
-  font-family: var(--sans);
-  font-size: 0.9375rem;
-  line-height: 1.55;
-  color: var(--concrete);
-}
-
 .refs {
-  margin: 0;
+  margin: 2.25rem 0 0;
   padding: 0;
   list-style: none;
   max-width: 54rem;
@@ -475,7 +476,6 @@ a:hover { color: var(--blue-deep); text-decoration-color: currentColor; }
   margin-bottom: 3rem;
 }
 .contract__head .band__title { margin: 0; }
-.contract__intro { margin: 0; font-size: 1.0625rem; line-height: 1.65; }
 
 .terms { margin: 0; border-top: 1px solid var(--blue-deep); }
 .terms__row {
@@ -485,13 +485,28 @@ a:hover { color: var(--blue-deep); text-decoration-color: currentColor; }
   padding: 1.6rem 0;
   border-bottom: 1px solid var(--rule-blue);
 }
-.terms dt {
+.terms__q {
+  margin: 0;
   font-family: var(--sans);
   font-size: 1.0625rem;
   font-weight: 600;
   line-height: 1.35;
+  color: var(--ink);
+  text-wrap: balance;
 }
-.terms dd { margin: 0; font-size: 1.0625rem; line-height: 1.65; }
+.terms__a { margin: 0; font-size: 1.0625rem; line-height: 1.65; }
+.terms__a p { margin: 0; text-wrap: pretty; }
+.terms__a p + p { margin-top: 0.6em; }
+.terms__a > div + div { margin-top: 1.35rem; }
+.terms__a dt {
+  margin-bottom: 0.3rem;
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--blue);
+}
+.terms__a dd { margin: 0; }
 
 .signed { margin-top: 3.5rem; }
 .signed__label {
@@ -515,6 +530,15 @@ a:hover { color: var(--blue-deep); text-decoration-color: currentColor; }
   font-size: 0.9375rem;
   font-weight: 500;
 }
+.signed__list a {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.signed__list a:hover { text-decoration: underline; }
 
 /* ---------- Footer ---------- */
 
